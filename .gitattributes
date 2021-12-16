@@ -3,3 +3,5 @@
 LICENSE             export-ignore
 README.md           export-ignore
 .php-cs-fixer.php   export-ignore
+tests               export-ignore
+phpunit.xml         export-ignore

@@ -8,7 +8,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "CmdWrapper\\Wrapper\\wrapper-namespace\\": "src/"
+            "CmdWrapper\\Wrapper\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CmdWrapper\\Wrapper\\Tests\\": "src/"
         }
     },
     "authors": [
@@ -18,11 +23,15 @@
         }
     ],
     "require-dev": {
-        "artarts36/php-cs-fixer-good-fixers": "^0.1.2"
+        "artarts36/php-cs-fixer-good-fixers": "^0.1.2",
+        "phpunit/phpunit": "^9.5"
     },
     "scripts": {
         "lint": [
             "php-cs-fixer fix --dry-run --verbose --diff --ansi --allow-risky=yes"
+        ],
+        "test": [
+            "./vendor/bin/phpunit -v --coverage-text --colors=always --configuration phpunit.xml"
         ]
     }
 }
