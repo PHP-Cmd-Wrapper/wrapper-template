@@ -3,6 +3,7 @@
     "description": "Wrapper Template",
     "type": "library",
     "require": {
+        "php": "^8",
         "artarts36/shell-command": "^2.1.13"
     },
     "license": "MIT",
@@ -34,6 +35,9 @@
         ],
         "test": [
             "./vendor/bin/phpunit -v --coverage-text --colors=always --configuration phpunit.xml"
+        ],
+        "mr-lint": [
+            "./vendor/bin/mr-linter lint"
         ]
     }
 }
