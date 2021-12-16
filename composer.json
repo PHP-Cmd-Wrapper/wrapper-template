@@ -1,0 +1,20 @@
+{
+    "name": "cmd-wrapper/wrapper-name-slug",
+    "description": "Wrapper Template",
+    "type": "library",
+    "require": {
+        "artarts36/shell-command": "^2.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CmdWrapper\\Wrapper\\wrapper-name-title\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ArtARTs36",
+            "email": "temicska99@mail.ru"
+        }
+    ]
+}
