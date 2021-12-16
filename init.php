@@ -23,14 +23,14 @@ if ($words->count() > 1) {
     $namespace = $title;
 }
 
-$namespace = 'CmdWrapper\\Wrapper\\' . $namespace . '\\';
-$testsNamespace = $namespace . 'Tests\\';
+$namespace = 'CmdWrapper\\Wrapper\\' . $namespace;
+$testsNamespace = $namespace . '\\Tests\\';
 $packageName = "cmd-wrapper/$slug";
 
 $composer = json_decode(file_get_contents('composer.json'), true);
 $composer['name'] = $packageName;
 $composer['autoload']['psr-4'] = [
-    $namespace => 'src/',
+    $namespace . '\\' => 'src/',
 ];
 $composer['autoload-dev']['psr-4'] = [
     $testsNamespace => 'src/',
