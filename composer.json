@@ -8,7 +8,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "CmdWrapper\\Wrapper\\wrapper-name-title\\": "src/"
+            "CmdWrapper\\Wrapper\\wrapper-namespace\\": "src/"
         }
     },
     "authors": [
