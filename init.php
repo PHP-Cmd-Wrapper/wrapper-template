@@ -30,3 +30,19 @@ $composerNewContent = str_replace(
 file_put_contents('composer.json', $composerNewContent);
 
 unlink(__FILE__);
+
+$className = $words->last()->upFirstSymbol();
+
+rename(
+    __DIR__ . '/src/Example.php',
+    $classPath = __DIR__ . '/src/' . $className->append('.php')
+);
+
+file_put_contents(
+    $classPath,
+    str_replace(
+        ['class Example', 'namespace CmdWrapper\Wrapper'],
+        ['class '. $className, 'namespace CmdWrapper\Wrapper\\' . $namespace],
+        file_get_contents($classPath)
+    )
+);
