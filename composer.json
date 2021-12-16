@@ -3,7 +3,7 @@
     "description": "Wrapper Template",
     "type": "library",
     "require": {
-        "artarts36/shell-command": "^2.1"
+        "artarts36/shell-command": "^2.1.13"
     },
     "license": "MIT",
     "autoload": {
