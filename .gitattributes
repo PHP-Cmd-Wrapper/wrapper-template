@@ -2,3 +2,4 @@
 .gitignore          export-ignore
 LICENSE             export-ignore
 README.md           export-ignore
+.php-cs-fixer.php   export-ignore
