@@ -28,3 +28,5 @@ $composerNewContent = str_replace(
 );
 
 file_put_contents('composer.json', $composerNewContent);
+
+unlink(__FILE__);
