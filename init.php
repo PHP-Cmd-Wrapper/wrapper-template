@@ -12,6 +12,8 @@ if ($slug === null) {
     return 1;
 }
 
+$slug = strtolower($slug);
+
 $words = Str::make($slug)->explode('-');
 $title = $words->map('ucwords')->implode('');
 
@@ -21,13 +23,20 @@ if ($words->count() > 1) {
     $namespace = $title;
 }
 
-$composerNewContent = str_replace(
-    ['wrapper-name-slug', 'wrapper-name-title', 'wrapper-namespace'],
-    [$slug, $title, $namespace],
-    file_get_contents('composer.json'),
-);
+$namespace = 'CmdWrapper\\Wrapper\\' . $namespace . '\\';
+$testsNamespace = $namespace . 'Tests\\';
+$packageName = "cmd-wrapper/$slug";
 
-file_put_contents('composer.json', $composerNewContent);
+$composer = json_decode(file_get_contents('composer.json'), true);
+$composer['name'] = $packageName;
+$composer['autoload']['psr-4'] = [
+    $namespace => 'src/',
+];
+$composer['autoload-dev']['psr-4'] = [
+    $testsNamespace => 'src/',
+];
+
+file_put_contents('composer.json', json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
 unlink(__FILE__);
 
@@ -42,7 +51,7 @@ file_put_contents(
     $classPath,
     str_replace(
         ['class Example', 'namespace CmdWrapper\Wrapper'],
-        ['class '. $className, 'namespace CmdWrapper\Wrapper\\' . $namespace],
+        ['class '. $className, 'namespace ' . $namespace],
         file_get_contents($classPath)
     )
 );
