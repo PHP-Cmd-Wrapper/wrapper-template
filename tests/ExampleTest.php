@@ -16,9 +16,11 @@ class ExampleTest extends TestCase
     {
         $wrapper = new Example(
             new ShellCommander(),
-            TestExecutor::fromSuccess('1.0.0'),
+            TestExecutor::fromSuccess('git version 1.2.3'),
         );
 
-        self::assertEquals('1.0.0', $wrapper->version());
+        $resultVersion = $wrapper->version();
+
+        self::assertEquals([1, 2, 3], [$resultVersion->major(), $resultVersion->minor(), $resultVersion->patch()]);
     }
 }

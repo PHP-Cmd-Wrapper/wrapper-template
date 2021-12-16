@@ -4,9 +4,16 @@
     "type": "library",
     "require": {
         "php": "^8",
-        "artarts36/shell-command": "^2.1.13"
+        "artarts36/shell-command": "^2.1.13",
+        "cmd-wrapper/wrapper-contracts": "dev-main"
     },
     "license": "MIT",
+    "repositories": [
+        {
+            "url": "https://github.com/PHP-Cmd-Wrapper/wrapper-contracts",
+            "type": "vcs"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "CmdWrapper\\Wrapper\\": "src/"
