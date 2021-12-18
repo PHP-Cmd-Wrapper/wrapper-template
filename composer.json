@@ -16,7 +16,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "CmdWrapper\\Wrapper\\": "src/"
+            "CmdWrapper\\Wrapper\\": "tests/"
         }
     },
     "autoload-dev": {
