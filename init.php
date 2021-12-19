@@ -41,6 +41,7 @@ file_put_contents('composer.json', json_encode($composer, JSON_PRETTY_PRINT | JS
 unlink(__FILE__);
 
 $className = $words->last()->upFirstSymbol();
+$classFullName = $namespace . '\\' . $className;
 
 rename(
     __DIR__ . '/src/Example.php',
@@ -61,8 +62,18 @@ $exampleTestPath = __DIR__ . '/tests/ExampleTest.php';
 file_put_contents(
     $exampleTestPath,
     str_replace(
-        ['CmdWrapper\Wrapper\Tests'],
-        [$testsNamespace],
+        [
+            'CmdWrapper\Wrapper\Tests',
+            'use CmdWrapper\Wrapper\Example;',
+            '@covers \CmdWrapper\Wrapper\Example::version',
+            'new Example',
+        ],
+        [
+            $testsNamespace,
+            "use $classFullName;",
+            "@covers $classFullName::version",
+            "new $className",
+        ],
         file_get_contents($exampleTestPath),
     )
 );
