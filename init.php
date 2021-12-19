@@ -24,7 +24,7 @@ if ($words->count() > 1) {
 }
 
 $namespace = 'CmdWrapper\\Wrapper\\' . $namespace;
-$testsNamespace = $namespace . '\\Tests\\';
+$testsNamespace = $namespace . '\\Tests';
 $packageName = "cmd-wrapper/$slug";
 
 $composer = json_decode(file_get_contents('composer.json'), true);
@@ -33,7 +33,7 @@ $composer['autoload']['psr-4'] = [
     $namespace . '\\' => 'src/',
 ];
 $composer['autoload-dev']['psr-4'] = [
-    $testsNamespace => 'src/',
+    $testsNamespace . '\\' => 'tests/',
 ];
 
 file_put_contents('composer.json', json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
@@ -53,5 +53,16 @@ file_put_contents(
         ['class Example', 'namespace CmdWrapper\Wrapper'],
         ['class '. $className, 'namespace ' . $namespace],
         file_get_contents($classPath)
+    )
+);
+
+$exampleTestPath = __DIR__ . '/tests/ExampleTest.php';
+
+file_put_contents(
+    $exampleTestPath,
+    str_replace(
+        ['CmdWrapper\Wrapper\Tests'],
+        [$testsNamespace],
+        file_get_contents($exampleTestPath),
     )
 );
